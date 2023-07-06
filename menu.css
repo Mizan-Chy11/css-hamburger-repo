@@ -1,8 +1,9 @@
-.menu-container{ 
+.menu-wrap{ 
    position: fixed;
    top: 0;
    left: 0;
    z-index: 2; 
+   
 }
 .toggler{
     position: absolute;
@@ -10,7 +11,6 @@
     left: 0.5rem;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
     opacity: 0;
     z-index: 3;
     cursor: pointer;
@@ -30,13 +30,15 @@
 }
 .Hamburger>div{
     position: absolute;
-    width: 50%;
+    width: 60%;
     height: 3px;
     border-radius: 1.5px;
     background-color: #fff44f;
+    transition: .4s;
     
 }
-.Hamburger>div:before, .Hamburger>div:after{
+.Hamburger>div:before{
+
     content: '';
     position: absolute;
     width: 100%;
@@ -44,20 +46,28 @@
     border-radius: 1.5px;
     background-color: #fff44f;
     transition: .4s;
-}
-.Hamburger>div:before{
     top: -10px;
+    left: 0;
 }
 .Hamburger>div:after{
-    top: 10px;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: #fff44f;
+	top: 10px;
+	left: 0;
+	transition: .4s;
 }
+
 .toggler:checked + .Hamburger>div{
     transform: rotate(135deg);
 }
 .toggler:checked + .Hamburger>div{
     transform: rotate(225deg);
 }
-.toggler:checked + .Hamburger>div:after, .toggler:checked + .Hamburger>div:before{
+.toggler:checked + .Hamburger>div:before, .toggler:checked + .Hamburger>div:after{
     transform: rotate(90deg);
     top: 0;
 }
@@ -65,11 +75,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
     transition: .6s;
+    font-family: 'Roboto' sans-serif;
 }
-.menu>div{
+.menu > div{
     position: absolute;
     width: 1600px;
     height: 1600px;
@@ -90,7 +102,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* opacity: 0; */
+     opacity: 0;
 }
 .menu > div > div > ul > li{
     list-style: none;
@@ -107,4 +119,15 @@
 }
 .menu > div > div > ul > li > a:hover{
     color: #fff44f;
+}
+.toggler:checked ~ .menu{
+	visibility: visible;
+}
+
+.toggler:checked ~ .menu > div{
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.toggler:checked ~ .menu > div > div{
+	opacity: 1;
 }
